@@ -23,6 +23,13 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+#Api gems
+gem 'active_model_serializers'
+gem 'deathbycaptcha'
+gem 'rspec'
+gem 'responders', '~> 2.0'
+
+
 #Driver gems
 gem 'watir-extensions-element-screenshot'
 gem 'selenium-webdriver'
@@ -32,6 +39,7 @@ gem 'nokogiri'
 gem 'watir-webdriver'
 
 group :development, :test do
+  gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end

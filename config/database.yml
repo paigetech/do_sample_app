@@ -9,7 +9,9 @@ default: &default
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
 
 development:
-  <<: *default
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
   database: rails_project_development
 
 # Warning: The database defined as "test" will be erased and
