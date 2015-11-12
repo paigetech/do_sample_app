@@ -41,7 +41,11 @@ def iso_time(param)
     #initialize the log
     @log = ""
     #set the browser that we will use to chrome for testing
-    browser = Watir::Browser.new
+    #use headless
+    #headless = Headless.new
+    #headless.start
+
+    browser = Watir::Browser.new :chrome
 
     #give the driver a url to visit
     browser.goto "http://myevent.oregonlive.com/web/event.php"
