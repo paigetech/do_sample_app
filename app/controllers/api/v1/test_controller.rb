@@ -1,3 +1,5 @@
+require 'headless'
+
 class Api::V1::TestController < ApplicationController
   respond_to :json
 
