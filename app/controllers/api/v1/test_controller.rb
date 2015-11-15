@@ -38,9 +38,15 @@ class Api::V1::TestController < ApplicationController
     headless = Headless.new
     headless.start
 
-    browser = Watir::browser.start 'www.google.com'
+    browser = Watir::Browser.new
+
+    browser.goto "http://www.google.com"
 
     @log += browser.title
+
+    browser.close if browser
+
+    headless.destroy
 
   end
 
