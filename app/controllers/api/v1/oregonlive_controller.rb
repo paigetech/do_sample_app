@@ -123,15 +123,30 @@ def iso_time(param)
       File.delete('captcha_image.png')
     end
 
-    #make the submission
-    browser.button(:value => "Preview").click
-
-    if browser.div(:class => "suportLinkContainer").exists?
-      @log += "Errors!  " + browser.div(:class => "suportLinkContainer").text
-    elsif browser.text.include? "If all the information below is accurate, click \"Submit\" below."
-      browser.button(:id => "Submit_Event").click
-      @log += "\nSubmitted event!"
+    #submit method
+    def submit(browser)
+        browser.button(:id => "Submit_Event").click
+        #wait for the page to reload
+        browser.button(:title => "Submit New Event").wait_until_present
+        #success!
+        @log += "\nSubmitted event!"
+        #capture the submit page and return it
+        @log += "\n " + browser.html
     end
+
+    #make the submission
+    if browser.button(:value => "Preview").exists?
+      browser.button(:value => "Preview").click
+      if browser.div(:class => "suportLinkContainer").exists?
+        @log += "Errors!  " + browser.div(:class => "suportLinkContainer").text
+      elsif browser.text.include? "If all the information below is accurate, click \"Submit\" below."
+        submit browser
+      end
+    else
+      #if there is not preview button
+      submit browser
+    end
+
 
     browser.close if browser
 
